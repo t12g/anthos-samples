@@ -79,12 +79,12 @@ printf "🔄 Adding IAM roles to the Service Account...\n"
 # [START anthos_bm_gcp_bash_hybrid_add_iam_role]
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
   --member="serviceAccount:baremetal-gcr@$PROJECT_ID.iam.gserviceaccount.com" \
-  --role="roles/gkehub.connect" \
+  --role="roles/gkehub.admin" \
   --no-user-output-enabled
 
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
   --member="serviceAccount:baremetal-gcr@$PROJECT_ID.iam.gserviceaccount.com" \
-  --role="roles/gkehub.admin" \
+  --role="roles/gkehub.connect" \
   --no-user-output-enabled
 
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
@@ -94,22 +94,32 @@ gcloud projects add-iam-policy-binding "$PROJECT_ID" \
 
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
   --member="serviceAccount:baremetal-gcr@$PROJECT_ID.iam.gserviceaccount.com" \
-  --role="roles/monitoring.metricWriter" \
-  --no-user-output-enabled
-
-gcloud projects add-iam-policy-binding "$PROJECT_ID" \
-  --member="serviceAccount:baremetal-gcr@$PROJECT_ID.iam.gserviceaccount.com" \
   --role="roles/monitoring.dashboardEditor" \
   --no-user-output-enabled
 
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
   --member="serviceAccount:baremetal-gcr@$PROJECT_ID.iam.gserviceaccount.com" \
-  --role="roles/stackdriver.resourceMetadata.writer" \
+  --role="roles/monitoring.metricWriter" \
+  --no-user-output-enabled
+
+gcloud projects add-iam-policy-binding "$PROJECT_ID" \
+  --member="serviceAccount:baremetal-gcr@$PROJECT_ID.iam.gserviceaccount.com" \
+  --role="roles/monitoring.viewer" \
   --no-user-output-enabled
 
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
   --member="serviceAccount:baremetal-gcr@$PROJECT_ID.iam.gserviceaccount.com" \
   --role="roles/opsconfigmonitoring.resourceMetadata.writer" \
+  --no-user-output-enabled
+
+gcloud projects add-iam-policy-binding "$PROJECT_ID" \
+  --member="serviceAccount:baremetal-gcr@$PROJECT_ID.iam.gserviceaccount.com" \
+  --role="roles/serviceusage.serviceUsageViewer" \
+  --no-user-output-enabled
+
+gcloud projects add-iam-policy-binding "$PROJECT_ID" \
+  --member="serviceAccount:baremetal-gcr@$PROJECT_ID.iam.gserviceaccount.com" \
+  --role="roles/stackdriver.resourceMetadata.writer" \
   --no-user-output-enabled
 # [END anthos_bm_gcp_bash_hybrid_add_iam_role]
 printf "✅ Successfully added the requires IAM roles to the Service Account.\n\n"
